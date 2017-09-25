@@ -1,0 +1,41 @@
+<!--
+  Generated template for the Dashboard page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Dashboard</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-card *ngFor="let detail of keysDash" >
+
+  <ion-card-header>
+    {{dashboard_details[detail].collName}}
+  </ion-card-header>
+
+  <ion-card-content>
+    
+    <span class="pass">
+      {{dashboard_details[detail].totalAsserts - dashboard_details[detail].failedAsserts}}
+    </span>
+    <span class="fail">
+      {{dashboard_details[detail].failedAsserts}}
+    </span>
+    <button ion-button round color='light' (click)="openEnvDetails(dashboard_details[detail].collName)">Details</button>
+    <span class="lastrun">
+       {{dashboard_details[detail].lastRun | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}}
+    </span>
+      
+  </ion-card-content>
+
+</ion-card>
+
+</ion-content>

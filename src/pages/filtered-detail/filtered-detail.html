@@ -1,0 +1,95 @@
+<!--
+  Generated template for the FilteredDetail page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Filtered Detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="grid">
+<ion-grid>
+
+  <ion-row *ngFor="let run of response , let q = index">
+    <!--<div *ngIf="choice==passFailArray[q] || choice=='All'">-->
+ <ion-col col-2 >
+            <div class="iteration">
+        {{run.cursor.iteration + 1}}
+      </div>
+    </ion-col>
+    <ion-col col-2 >
+      <div class="request-type newstyle">
+        {{run.request.method}}
+      </div>
+
+    </ion-col>
+    
+    <ion-col col-4 class="request-url newstyle">
+     {{run.item.name}}
+    </ion-col>
+     <ion-col col-4 class="status newstyle">
+       <div class="request-type {{passFailArray[q] }}">
+     {{passFailArray[q]=='NA' ? 'No Tests' : passFailArray[q]}}
+       </div>
+    </ion-col>
+    <!--<div class="response-text">
+      <pre>{{run.response.body}}</pre>
+    </div>-->
+    
+    <ion-col col-12>
+    <div>
+        <ion-segment [(ngModel)]="run.id">
+          <ion-segment-button value="request">
+            Request
+          </ion-segment-button>
+          <ion-segment-button value="response">
+            Response
+          </ion-segment-button>
+           <ion-segment-button value="tests">
+            Tests
+          </ion-segment-button>
+        </ion-segment>
+    </div>
+
+      <div [ngSwitch]="run.id" class="response-text">
+     
+            <pre *ngSwitchCase="'request'" [innerHTML]="run.request| json | prettyPipe">
+
+         
+            </pre>             
+      
+           <pre *ngSwitchCase="'response'" [innerHTML]="run.response| json | prettyPipe">
+
+           </pre>
+            <div *ngSwitchCase="'tests'">
+
+            <div  *ngFor="let assert of run.assertions, let p = index">
+             
+               <div class="assertion">
+                    {{p + 1 }}: {{assert.assertion}}
+              </div>
+            <div *ngIf="assert.error" class="test-fail">Fail</div>
+            <div *ngIf="!assert.error" class="test-pass">Pass</div>
+
+            </div>
+           
+            </div>
+      </div>
+</ion-col>
+
+ 
+  </ion-row>
+
+</ion-grid>
+
+ </div>
+
+</ion-content>

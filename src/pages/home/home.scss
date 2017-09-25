@@ -1,0 +1,138 @@
+page-home {
+    .stat-icon{
+        float:right;
+    }
+    .searchbar{
+        display: inline-block;
+    width: 20%;
+    }
+    .stat-title{
+        background-color: #EFEEFF;
+       padding: 15px;
+       float:right;
+       width:20%;
+       position: fixed;
+       right:0;
+           margin-top: 48px;
+
+    }
+    .iteration{
+          background-color: goldenrod;
+        max-width: 50px !important;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    height: 38px;
+    border-radius: 20px;   
+    }
+
+    .grid{
+        float:left;
+       width:80%;
+           margin-top: 20px;
+    }
+    .scroll-content{
+        padding: 0 !important;
+    }
+    .test-fail{
+       
+        float : right;
+        color : red;
+            display: inline-block;
+    text-align: center;
+    width: 50%;
+    padding: 20px;
+    }
+    .test-pass{
+       
+        float : right;
+        color : green;
+            display: inline-block;
+    text-align: center;
+    width: 50%;
+    padding: 20px;
+    }
+    .assertion{
+       
+            display: inline-block;
+    text-align: center;
+    width: 50%;
+    padding: 20px;
+    }
+    .newstyle{
+            padding: 15px 0 0 20px;
+    }
+    .chart-div{
+        _display: inline-block;
+        position:relative;
+        _width:15%;
+        _height: 15%;
+    }
+    .stat-text{
+            _position: absolute;
+        _display: inline-block;
+    }
+    .request-type{
+        background-color: #009286;
+        max-width: 60px !important;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    height: 38px;
+    border-radius: 8px;   
+     &.Fail{
+ background-color: red;
+ left: 50%;
+    position: absolute;
+    transform: translateX(-20%);
+    }
+    &.Pass{
+background-color: green;
+left: 50%;
+    position: absolute;
+    transform: translateX(-20%);
+    }
+    &.NA{
+        max-width: 100px!important;
+    background-color: yellowgreen;    
+    left: 50%;
+    position: absolute;
+    transform: translateX(-20%);
+    }
+    }
+    .row{
+        _padding: 5px 0;
+            margin: 10px 0;
+    background-color: #cec9c9;
+        &:hover{
+                background-color: #e9e8f7;
+                -webkit-box-shadow: 1px 10px 19px 3px rgba(196,182,250,1);
+                -moz-box-shadow: 1px 10px 19px 3px rgba(196,182,250,1);
+                box-shadow: rgb(196, 182, 250) 1px 3px 3px 3px;
+                font-weight: 500;
+                color: #504f5d;
+                overflow-x: scroll;
+        }
+    }
+    .request-url{
+            padding-left: 20px;
+              text-align: center;
+              font-style: oblique;
+    font-weight: 500;
+    color: brown;
+    }
+    .response-text{
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+
+    }
+    .status{
+        text-align: center;
+    }
+}

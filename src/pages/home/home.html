@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{project}}
+      <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" placeholder="Filter By Iteration"></ion-searchbar>
+      <div style="float:right">
+{{(response)?.environment.name}}
+      </div>
+      
+    </ion-title>
+    
+  
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+   <ion-item style="position: fixed;z-index:10">
+   
+    <ion-select (ionChange)="onSelectChange($event)" [(ngModel)]="choice" cancelText="Nah" okText="Okay!">
+      <ion-option value="All" selected="true">All</ion-option>
+      <ion-option value="NA">No Tests</ion-option>
+      <ion-option value="Fail">Fail</ion-option>
+      <ion-option value="Pass">Pass</ion-option>
+    </ion-select>
+  </ion-item>
+ <div class="stat-title">
+
+   <h4 (click)="hideStats()">Statistics
+   <ion-icon [name]="statsIcon" class="stat-icon" ></ion-icon>
+   </h4>
+
+    <div class="chart-div" [hidden]="!toggleStats">
+        <canvas #canvas>
+            </canvas>
+        
+    </div>
+    <div [hidden]="!toggleStats" class="stat-text">Last Run: {{(response)?.run.timings.completed | amDateFormat:'MMMM Do YYYY, h:mm:ss a'}} </div>
+     <div [hidden]="!toggleStats" class="stat-text">Total Time: {{(response)?.run.timings.completed | amDifference: (response)?.run.timings.started :'seconds' : true}} seconds </div>
+ </div>
+ <div class="grid">
+<ion-grid>
+  <ng-container *ngFor="let run of (response)?.run.executions , let q = index">
+
+<ion-row *ngIf="choice==passFailArray[q] || choice=='All'">
+  <!--<ion-row *ngFor="let run of (response)?.run.executions , let q = index">-->
+    <!--<div *ngIf="choice==passFailArray[q] || choice=='All'">-->
+ <ion-col col-2 >
+            <div class="iteration">
+        {{run.cursor.iteration + 1}}
+      </div>
+    </ion-col>
+    <ion-col col-2 >
+      <div class="request-type newstyle">
+        {{run.request.method}}
+      </div>
+
+    </ion-col>
+    
+    <ion-col col-4 class="request-url newstyle">
+     {{run.item.name}}
+    </ion-col>
+     <ion-col col-4 class="status newstyle">
+       <div class="request-type {{passFailArray[q] }}">
+     {{passFailArray[q]=='NA' ? 'No Tests' : passFailArray[q]}}
+       </div>
+    </ion-col>
+    <!--<div class="response-text">
+      <pre>{{run.response.body}}</pre>
+    </div>-->
+    
+    <ion-col col-12>
+    <div>
+        <ion-segment [(ngModel)]="run.id">
+          <ion-segment-button value="request">
+            Request
+          </ion-segment-button>
+          <ion-segment-button value="response">
+            Response
+          </ion-segment-button>
+           <ion-segment-button value="tests">
+            Tests
+          </ion-segment-button>
+        </ion-segment>
+    </div>
+
+      <div [ngSwitch]="run.id" class="response-text">
+     
+            <pre *ngSwitchCase="'request'" [innerHTML]="run.request| json | prettyPipe">
+
+         
+            </pre>             
+      
+           <pre *ngSwitchCase="'response'" [innerHTML]="run.response| json | prettyPipe">
+
+           </pre>
+            <div *ngSwitchCase="'tests'">
+
+            <div  *ngFor="let assert of run.assertions, let p = index">
+             
+               <div class="assertion">
+                    {{p + 1 }}: {{assert.assertion}}
+              </div>
+            <div *ngIf="assert.error" class="test-fail">Fail</div>
+            <div *ngIf="!assert.error" class="test-pass">Pass</div>
+
+            </div>
+           
+            </div>
+      </div>
+</ion-col>
+
+ 
+  </ion-row>
+  </ng-container>
+</ion-grid>
+
+ </div>
+  
+</ion-content>

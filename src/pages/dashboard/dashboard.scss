@@ -1,0 +1,57 @@
+page-dashboard {
+    .card-md{
+        width:20%;
+        height:30%;
+        display:inline-block;
+        white-space: normal;
+        position:relative
+
+    }
+    button{
+        position:absolute!important;
+        bottom: 0;
+       
+        left:0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border-radius: 0!important;
+    }
+    .lastrun{
+        position:absolute;
+        bottom: 45px;
+        width:100%;
+       // left:0;
+            left: 0;
+    text-align: center;
+    font-weight: bold;
+        color: #674614;
+        
+        _float:left
+    }
+    .pass{
+        font-size: 2vw;
+    color: green;
+    float:left;
+    padding-left: 20px
+    }
+    .fail{
+         font-size: 2vw;
+    color: red;
+    float:right;
+    padding-right: 20px
+    }
+    
+    ion-card-header{
+                background-color: darkorange;
+        color: white!important;
+        /* font-weight: 100; */
+         font-weight: 400!important;
+        // font: -webkit-xxx-large;
+        font-size: 2vw!important;
+        text-align: center;
+        /* font-size: small; */
+        height: 30%;
+      }
+
+}
