@@ -14,7 +14,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'dashboard.html',
 })
 export class Dashboard {
-  env_Types= ['FR_ST','FR_ET','Portal-ET-North','Portal-ET-South','PR_LB_Client','PR_LB_Employee','PR_N_Client','PR_N_Employee','PR_S_Client','PR_S_Employee'];
+  env_Types= ['default'];
   dashboard_details={};
   keysDash =[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public recentRes:RecentResult,public loadingCtrl: LoadingController) {
