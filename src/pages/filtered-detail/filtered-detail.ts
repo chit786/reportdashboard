@@ -31,6 +31,19 @@ executions:any;
     
   }
 
+  computeRequestUrl(req: any) {
+      let protocol = req.url.protocol + '//';
+      let host = req.url.host.join(".") + '/';
+      let path = req.url.path.join("/");
+      let query = '';
+      req.url.query.forEach(q => {
+         if (typeof q === 'object') {
+         query = q.key + '=' + q.value;
+         }
+      });
+      let finalUrl = protocol + host + path;
+      return (query === '') ? finalUrl : (finalUrl + '?' + query);
+  }
 
   updateList(nav: any){
    

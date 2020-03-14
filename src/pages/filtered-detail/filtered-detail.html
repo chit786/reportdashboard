@@ -34,6 +34,7 @@
     
     <ion-col col-4 class="request-url newstyle">
      {{run.item.name}}
+     {{computeRequestUrl(run.request)}}
     </ion-col>
      <ion-col col-4 class="status newstyle">
        <div class="request-type {{passFailArray[q] }}">

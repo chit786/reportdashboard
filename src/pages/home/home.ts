@@ -8,6 +8,7 @@ import { FilteredDetail } from '../filtered-detail/filtered-detail';
 declare var Chart;
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/finally';
+import { isObject } from 'ionic-angular/umd/util/util';
 
 @Component({
   selector: 'page-home',
@@ -70,6 +71,20 @@ export class HomePage {
   }
   onSelectChange(selectedValue: any){
       this.choice = selectedValue;
+  }
+
+  computeRequestUrl(req: any) {
+    let protocol = req.url.protocol + '//';
+    let host = req.url.host.join(".") + '/';
+    let path = req.url.path.join("/");
+    let query = '';
+    req.url.query.forEach(q => {
+      if (typeof q === 'object') {
+        query = q.key + '=' + q.value;
+      }
+    });
+    let finalUrl = protocol + host + path;
+    return (query === '') ? finalUrl : (finalUrl + '?' + query);
   }
 
   updateList(data: any){

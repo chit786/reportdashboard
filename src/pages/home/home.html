@@ -41,8 +41,6 @@
   <ng-container *ngFor="let run of (response)?.run.executions , let q = index">
 
 <ion-row *ngIf="choice==passFailArray[q] || choice=='All'">
-  <!--<ion-row *ngFor="let run of (response)?.run.executions , let q = index">-->
-    <!--<div *ngIf="choice==passFailArray[q] || choice=='All'">-->
  <ion-col col-2 >
             <div class="iteration">
         {{run.cursor.iteration + 1}}
@@ -57,16 +55,14 @@
     
     <ion-col col-4 class="request-url newstyle">
      {{run.item.name}}
+     {{computeRequestUrl(run.request)}}
     </ion-col>
      <ion-col col-4 class="status newstyle">
        <div class="request-type {{passFailArray[q] }}">
      {{passFailArray[q]=='NA' ? 'No Tests' : passFailArray[q]}}
        </div>
     </ion-col>
-    <!--<div class="response-text">
-      <pre>{{run.response.body}}</pre>
-    </div>-->
-    
+
     <ion-col col-12>
     <div>
         <ion-segment [(ngModel)]="run.id">
@@ -84,15 +80,15 @@
 
       <div [ngSwitch]="run.id" class="response-text">
      
-            <pre *ngSwitchCase="'request'" [innerHTML]="run.request| json | prettyPipe">
+            <pre style="height: 300px;" *ngSwitchCase="'request'" [innerHTML]="run.request| json | prettyPipe">
 
          
             </pre>             
       
-           <pre *ngSwitchCase="'response'" [innerHTML]="run.response| json | prettyPipe">
+           <pre style="height: 300px;" *ngSwitchCase="'response'" [innerHTML]="run.response| json | prettyPipe">
 
            </pre>
-            <div *ngSwitchCase="'tests'">
+            <div style="height: 300px;" *ngSwitchCase="'tests'">
 
             <div  *ngFor="let assert of run.assertions, let p = index">
              
